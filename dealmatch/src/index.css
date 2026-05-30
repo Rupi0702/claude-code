@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-navy-950 text-slate-100 antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Hide scrollbars on the mobile shell but keep scrolling */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold
+           transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-gold {
+    @apply btn bg-gold-500 text-navy-950 hover:bg-gold-400;
+  }
+  .btn-outline {
+    @apply btn border border-navy-600 bg-navy-800 text-slate-100 hover:border-gold-500;
+  }
+  .btn-ghost {
+    @apply btn text-slate-300 hover:text-gold-400;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-navy-600 bg-navy-800 px-4 py-3 text-sm text-slate-100
+           placeholder:text-slate-500 outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400;
+  }
+  .card {
+    @apply rounded-2xl border border-navy-700 bg-navy-800/80 shadow-lg shadow-black/30;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-navy-600 bg-navy-700/60 px-3 py-1
+           text-xs font-medium text-slate-200;
+  }
+  .chip-active {
+    @apply border-gold-500 bg-gold-500/10 text-gold-400;
+  }
+}
