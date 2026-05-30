@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DealMatch — Design-Vorschau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950:'#070d1f', 900:'#0a1128', 800:'#0f1a3a', 700:'#15244d', 600:'#1d3060', 500:'#28407e' },
+            gold: { 400:'#e6c860', 500:'#d4af37', 600:'#b8941f' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+          maxWidth: { app: '480px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    ::-webkit-scrollbar { width: 0; height: 0; }
+    .chip { display:inline-flex; align-items:center; border-radius:9999px; border:1px solid #1d3060; background:rgba(21,36,77,.6); padding:.25rem .75rem; font-size:.75rem; font-weight:500; color:#e2e8f0; }
+    .chip-active { border-color:#d4af37; background:rgba(212,175,55,.1); color:#e6c860; }
+    .btn-gold { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.75rem; padding:.75rem 1rem; font-size:.875rem; font-weight:600; background:#d4af37; color:#070d1f; transition:.15s; cursor:pointer; border:none; }
+    .btn-gold:hover { background:#e6c860; }
+    .btn-outline { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:.75rem; padding:.75rem 1rem; font-size:.875rem; font-weight:600; border:1px solid #1d3060; background:#0f1a3a; color:#f1f5f9; cursor:pointer; }
+    .card { border-radius:1rem; border:1px solid #15244d; background:rgba(15,26,58,.8); box-shadow:0 10px 25px rgba(0,0,0,.3); }
+    .input { width:100%; border-radius:.75rem; border:1px solid #1d3060; background:#0f1a3a; padding:.75rem 1rem; font-size:.875rem; color:#f1f5f9; outline:none; }
+    .input::placeholder { color:#64748b; }
+    .input:focus { border-color:#d4af37; }
+    .nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:.25rem; padding:.625rem 0; font-size:11px; font-weight:500; color:#94a3b8; background:none; border:none; cursor:pointer; }
+    .nav-btn.active { color:#d4af37; }
+  </style>
+</head>
+<body class="bg-navy-950 text-slate-100">
+
+  <!-- Hinweis-Banner (Desktop) -->
+  <div class="mx-auto max-w-app px-4 pt-4 text-center text-xs text-slate-500">
+    Design-Vorschau · Beispieldaten · Tabs unten zum Wechseln
+  </div>
+
+  <!-- Phone-Shell -->
+  <div class="mx-auto flex min-h-screen max-w-app flex-col bg-navy-950 sm:my-4 sm:min-h-0 sm:rounded-3xl sm:border sm:border-navy-700 sm:shadow-2xl sm:overflow-hidden" style="min-height: 720px;">
+
+    <!-- ============ DISCOVER ============ -->
+    <section data-view="discover" class="flex flex-1 flex-col">
+      <header class="sticky top-0 z-20 flex items-center justify-between border-b border-navy-700 bg-navy-900/95 px-4 py-3 backdrop-blur">
+        <h1 class="text-lg font-bold tracking-tight">Discover</h1>
+        <button onclick="show('premium')" class="text-xs font-semibold text-gold-500">Go Premium</button>
+      </header>
+      <main class="flex-1 overflow-y-auto px-4 py-4">
+        <!-- Filter -->
+        <div class="mb-4 space-y-2">
+          <div class="flex items-center gap-2 overflow-x-auto pb-1">
+            <span class="text-xs text-slate-500">Industry:</span>
+            <button class="chip chip-active">All</button>
+            <button class="chip whitespace-nowrap">FinTech</button>
+            <button class="chip whitespace-nowrap">HealthTech</button>
+            <button class="chip whitespace-nowrap">SaaS</button>
+          </div>
+          <div class="flex items-center gap-2 overflow-x-auto pb-1">
+            <span class="text-xs text-slate-500">Ticket:</span>
+            <button class="chip chip-active">Any</button>
+            <button class="chip whitespace-nowrap">25k</button>
+            <button class="chip whitespace-nowrap">50k</button>
+            <button class="chip whitespace-nowrap">100k</button>
+            <button class="chip whitespace-nowrap">200k+</button>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Investor-Karte 1 -->
+          <article class="card p-5">
+            <div class="mb-3 flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-lg font-bold leading-tight">Jana Berger</h2>
+                <p class="mt-0.5 text-xs uppercase tracking-wide text-gold-500">Investor</p>
+              </div>
+              <span class="inline-flex items-center gap-1 rounded-full bg-gold-500/15 px-2 py-0.5 text-[11px] font-semibold text-gold-400">
+                <svg viewBox="0 0 20 20" class="h-3 w-3 fill-current"><path d="M10 1l2.39 1.74 2.95.02 1.18 2.71 2.5 1.57-.92 2.81.92 2.81-2.5 1.57-1.18 2.71-2.95.02L10 19l-2.39-1.74-2.95-.02-1.18-2.71-2.5-1.57.92-2.81L.98 7.04l2.5-1.57 1.18-2.71 2.95-.02L10 1zm-1 11.5l4.5-4.5-1.06-1.06L9 10.38 7.56 8.94 6.5 10l2.5 2.5z"/></svg>
+                Verified
+              </span>
+            </div>
+            <p class="mb-4 text-sm leading-relaxed text-slate-300">Ex-Gründerin (Exit 2021), 14 Angel-Investments in B2B-SaaS &amp; FinTech im DACH-Raum.</p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span class="chip">FinTech</span>
+              <span class="chip">SaaS</span>
+              <span class="chip chip-active">50k–200k+</span>
+              <span class="chip">Pre-Seed</span>
+              <span class="chip">Seed</span>
+            </div>
+            <button class="btn-gold w-full">Send match request</button>
+          </article>
+
+          <!-- Investor-Karte 2 -->
+          <article class="card p-5">
+            <div class="mb-3 flex items-start justify-between gap-3">
+              <div>
+                <h2 class="text-lg font-bold leading-tight">Maximilian Frank</h2>
+                <p class="mt-0.5 text-xs uppercase tracking-wide text-gold-500">Investor</p>
+              </div>
+            </div>
+            <p class="mb-4 text-sm leading-relaxed text-slate-300">Family Office mit Fokus auf HealthTech. Tickets bevorzugt in der Pre-Seed-Phase.</p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span class="chip">HealthTech</span>
+              <span class="chip chip-active">25k–100k</span>
+              <span class="chip">Pre-Seed</span>
+            </div>
+            <button class="btn-gold w-full">Send match request</button>
+          </article>
+
+          <!-- Tageslimit-Karte -->
+          <div class="card p-6 text-center" style="border-color:rgba(184,148,31,.4); background:rgba(212,175,55,.05);">
+            <h3 class="text-base font-bold text-gold-400">Du hast die heutigen 5 Matches gesehen</h3>
+            <p class="mt-1 text-sm text-slate-300">Upgrade auf Premium für unbegrenzte Matches und ein Verified-Badge.</p>
+            <button onclick="show('premium')" class="btn-gold mt-4 w-full">Unlock unlimited — 99€/Monat</button>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- ============ MATCHES ============ -->
+    <section data-view="matches" class="hidden flex-1 flex-col">
+      <header class="sticky top-0 z-20 flex items-center justify-between border-b border-navy-700 bg-navy-900/95 px-4 py-3 backdrop-blur">
+        <h1 class="text-lg font-bold tracking-tight">Matches</h1>
+      </header>
+      <main class="flex-1 overflow-y-auto px-4 py-4 space-y-6">
+        <section>
+          <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Match requests (1)</h2>
+          <div class="card flex items-center justify-between gap-3 p-4">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="truncate font-semibold">Sophie Wagner</span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-gold-500/15 px-2 py-0.5 text-[11px] font-semibold text-gold-400">
+                  <svg viewBox="0 0 20 20" class="h-3 w-3 fill-current"><path d="M10 1l2.39 1.74 2.95.02 1.18 2.71 2.5 1.57-.92 2.81.92 2.81-2.5 1.57-1.18 2.71-2.95.02L10 19l-2.39-1.74-2.95-.02-1.18-2.71-2.5-1.57.92-2.81L.98 7.04l2.5-1.57 1.18-2.71 2.95-.02L10 1z"/></svg>
+                  Verified
+                </span>
+              </div>
+              <p class="text-xs text-slate-400">möchte sich vernetzen</p>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <button class="btn-outline px-3 py-2 text-xs">Decline</button>
+              <button class="btn-gold px-3 py-2 text-xs">Accept</button>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Conversations</h2>
+          <div class="space-y-3">
+            <button onclick="show('chat')" class="card flex w-full items-center gap-3 p-4 text-left hover:border-gold-500" style="border:1px solid #15244d;">
+              <div class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy-700 font-bold text-gold-500">J</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2"><span class="truncate font-semibold">Jana Berger</span></div>
+                <p class="truncate text-xs text-slate-400">Klingt spannend — lass uns telefonieren!</p>
+              </div>
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button onclick="show('chat')" class="card flex w-full items-center gap-3 p-4 text-left hover:border-gold-500" style="border:1px solid #15244d;">
+              <div class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy-700 font-bold text-gold-500">M</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2"><span class="truncate font-semibold">Maximilian Frank</span></div>
+                <p class="truncate text-xs text-slate-400">Tap to open chat</p>
+              </div>
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </section>
+      </main>
+    </section>
+
+    <!-- ============ CHAT ============ -->
+    <section data-view="chat" class="hidden flex-1 flex-col">
+      <header class="sticky top-0 z-20 flex items-center gap-3 border-b border-navy-700 bg-navy-900/95 px-3 py-3 backdrop-blur">
+        <button onclick="show('matches')" class="p-1 text-slate-300">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="grid h-9 w-9 place-items-center rounded-full bg-navy-700 font-bold text-gold-500">J</div>
+        <h1 class="truncate text-base font-bold">Jana Berger</h1>
+      </header>
+      <main class="flex-1 space-y-2 overflow-y-auto px-4 py-4">
+        <div class="flex justify-start"><div class="max-w-[78%] rounded-2xl rounded-bl-sm bg-navy-700 px-4 py-2 text-sm text-slate-100">Hi! Euer Ansatz für VAT-Automatisierung gefällt mir.</div></div>
+        <div class="flex justify-end"><div class="max-w-[78%] rounded-2xl rounded-br-sm bg-gold-500 px-4 py-2 text-sm text-navy-950">Danke! Wir suchen gerade 100k für die Pre-Seed.</div></div>
+        <div class="flex justify-start"><div class="max-w-[78%] rounded-2xl rounded-bl-sm bg-navy-700 px-4 py-2 text-sm text-slate-100">Passt gut in mein Ticket-Range. Habt ihr ein Deck?</div></div>
+        <div class="flex justify-end"><div class="max-w-[78%] rounded-2xl rounded-br-sm bg-gold-500 px-4 py-2 text-sm text-navy-950">Schicke ich dir gleich rüber 🙌</div></div>
+        <div class="flex justify-start"><div class="max-w-[78%] rounded-2xl rounded-bl-sm bg-navy-700 px-4 py-2 text-sm text-slate-100">Klingt spannend — lass uns telefonieren!</div></div>
+      </main>
+      <div class="sticky bottom-0 flex items-center gap-2 border-t border-navy-700 bg-navy-900/95 px-3 py-3 backdrop-blur">
+        <input class="input flex-1" placeholder="Write a message…" />
+        <button class="btn-gold px-4">Send</button>
+      </div>
+    </section>
+
+    <!-- ============ PREMIUM ============ -->
+    <section data-view="premium" class="hidden flex-1 flex-col">
+      <header class="sticky top-0 z-20 flex items-center gap-3 border-b border-navy-700 bg-navy-900/95 px-3 py-3 backdrop-blur">
+        <button onclick="show('discover')" class="p-1 text-slate-300">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <h1 class="text-lg font-bold tracking-tight">Investor Premium</h1>
+      </header>
+      <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        <div class="card overflow-hidden">
+          <div class="bg-gradient-to-br from-navy-700 to-navy-900 p-6 text-center">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gold-500">DealMatch Premium</p>
+            <p class="mt-2 text-4xl font-extrabold">99€<span class="text-base font-medium text-slate-400">/Monat</span></p>
+            <p class="mt-1 text-sm text-slate-400">Jederzeit kündbar.</p>
+          </div>
+          <ul class="space-y-3 p-6">
+            <li class="flex items-start gap-3 text-sm text-slate-200"><svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 fill-gold-500"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0z"/></svg>Unbegrenzte Matches pro Tag</li>
+            <li class="flex items-start gap-3 text-sm text-slate-200"><svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 fill-gold-500"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0z"/></svg>Verifiziertes Investor-Badge</li>
+            <li class="flex items-start gap-3 text-sm text-slate-200"><svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 fill-gold-500"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0z"/></svg>Bevorzugte Platzierung im Feed</li>
+            <li class="flex items-start gap-3 text-sm text-slate-200"><svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 fill-gold-500"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0z"/></svg>Sehen, wer dich matchen will</li>
+          </ul>
+        </div>
+        <button class="btn-gold w-full">Subscribe — 99€/Monat</button>
+        <p class="px-2 text-center text-xs text-slate-500">Zahlungen werden sicher über Stripe abgewickelt.</p>
+      </main>
+    </section>
+
+    <!-- ============ PROFILE ============ -->
+    <section data-view="profile" class="hidden flex-1 flex-col">
+      <header class="sticky top-0 z-20 flex items-center justify-between border-b border-navy-700 bg-navy-900/95 px-4 py-3 backdrop-blur">
+        <h1 class="text-lg font-bold tracking-tight">Profile</h1>
+        <button class="text-xs font-semibold text-slate-400">Sign out</button>
+      </header>
+      <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        <div class="card flex items-center justify-between p-4">
+          <div>
+            <p class="text-xs uppercase tracking-wide text-slate-400">Founder account</p>
+            <div class="mt-1 flex items-center gap-2"><span class="chip">Free</span></div>
+          </div>
+          <button onclick="show('premium')" class="btn-gold px-3 py-2 text-xs">Go Premium</button>
+        </div>
+        <form class="card space-y-5 p-5">
+          <div><label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400">Company name</label><input class="input" value="TaxFlow GmbH" /></div>
+          <div><label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400">One-liner</label><textarea class="input" style="min-height:5rem;">Wir automatisieren die EU-weite Umsatzsteuer-Meldung für KMU.</textarea></div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400">Funding stage</label>
+            <div class="flex flex-wrap gap-2"><span class="chip chip-active">Pre-Seed</span><span class="chip">Seed</span></div>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400">Ticket size needed</label>
+            <div class="flex flex-wrap gap-2"><span class="chip">25k</span><span class="chip">50k</span><span class="chip chip-active">100k</span><span class="chip">200k+</span></div>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-400">Industry</label>
+            <div class="flex flex-wrap gap-2"><span class="chip chip-active">FinTech</span><span class="chip">HealthTech</span><span class="chip">SaaS</span><span class="chip">Other</span></div>
+          </div>
+          <button type="button" class="btn-gold w-full">Save changes</button>
+        </form>
+      </main>
+    </section>
+
+    <!-- Bottom Nav -->
+    <nav class="sticky bottom-0 z-20 flex items-stretch justify-around border-t border-navy-700 bg-navy-900/95 backdrop-blur">
+      <button class="nav-btn active" data-nav="discover" onclick="show('discover')">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Discover
+      </button>
+      <button class="nav-btn" data-nav="matches" onclick="show('matches')">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Matches
+      </button>
+      <button class="nav-btn" data-nav="profile" onclick="show('profile')">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 20c0-4 4-6 8-6s8 2 8 6"/></svg>Profile
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    function show(view) {
+      document.querySelectorAll('[data-view]').forEach(el => {
+        el.classList.toggle('hidden', el.dataset.view !== view);
+        el.classList.toggle('flex', el.dataset.view === view);
+      });
+      // Bottom-Nav-Highlight (chat/premium gehören optisch zu matches/discover)
+      const navMap = { discover:'discover', matches:'matches', chat:'matches', profile:'profile', premium:'discover' };
+      document.querySelectorAll('[data-nav]').forEach(b =>
+        b.classList.toggle('active', b.dataset.nav === navMap[view]));
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
