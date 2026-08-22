@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Chaosrunde",
+    "slug": "chaosrunde",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "chaosrunde",
+    "splash": {
+      "backgroundColor": "#0B0620"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chaosrunde.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0620"
+      },
+      "package": "com.chaosrunde.app"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
